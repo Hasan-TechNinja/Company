@@ -8,7 +8,25 @@
     {% tailwind_css %}
     <title>{% block title %}{% endblock title %}</title>
 </head>
-<body>
+<body class='bg-blue-100'>
+    <div class='flex justify-around bg-red-400 py-3 text-white sm:w-full'>
+        <div class=''>
+            <ul class='flex space-x-3 md:space-x-6 lg:space-x-32'>
+                <li class='hover:text-black'><a href="#">Home</a></li>
+                <li class='hover:text-black'><a href="#">About</a></li>
+                <li class='hover:text-black'><a href="#">Company</a></li>
+                <li class='hover:text-black'><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class='flex space-x-3 md:space-x-6 lg:space-x-32'>
+                <li class='hover:text-black'><a href="#">Profile</a></li>
+                <li class='hover:text-black'><a href="#">Login</a></li>
+                <li class='hover:text-black'><a href="#">Logout</a></li>
+                <li class='hover:text-black'><a href="#">Registration</a></li>
+            </ul>
+        </div>
+    </div>
     {% block content %}
     
     {% endblock content %}
