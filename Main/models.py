@@ -16,7 +16,29 @@ class Company(models.Model):
     location = models.CharField(max_length=100)
     about = models.CharField(max_length=100)
     type = models.CharField(max_length=100, choices= type_choice)
-    added_date = models.DateField(auto_now=True)
+    added_date = models.DateField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
-    
+
+LANGUAGE_CHOICES = (
+    ('python', 'python'),
+    ('java', 'java'),
+    ('C', 'C'),
+    ('C++', 'C++'),
+    ('JavaScript', 'JavaScript')
+)
+
+STYLE_CHOICE = (
+    ('friendly', 'friendly'),
+    ('angry', 'angry')
+)
+class Snippet(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=50)
+    code = models.TextField()
+    linenos = models.BooleanField(default=False)
+    language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
+    style = models.CharField(choices=STYLE_CHOICE, default='friendly', max_length=100)
+
+    class Meta:
+        ordering = ['created']
