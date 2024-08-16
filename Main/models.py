@@ -1,44 +1,21 @@
 from django.db import models
+from pygments.lexers import get_all_lexers
+from pygments.styles import get_all_styles
 
-# Create your models here.
-
-
-type_choice = (
-    ('IT','IT'),
-    ('Computer', 'Computer'),
-    ('Mobile','Mobile')
-
-)
-
-class Company(models.Model):
-    company_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
-    about = models.CharField(max_length=100)
-    type = models.CharField(max_length=100, choices= type_choice)
-    added_date = models.DateField(auto_now_add=True)
-    active = models.BooleanField(default=True)
+LEXERS = [item for item in get_all_lexers() if item[1]]
+LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
+STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 
 
-LANGUAGE_CHOICES = (
-    ('python', 'python'),
-    ('java', 'java'),
-    ('C', 'C'),
-    ('C++', 'C++'),
-    ('JavaScript', 'JavaScript')
-)
-
-STYLE_CHOICE = (
-    ('friendly', 'friendly'),
-    ('angry', 'angry')
-)
 class Snippet(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100, blank=True, default='')
     code = models.TextField()
     linenos = models.BooleanField(default=False)
     language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
-    style = models.CharField(choices=STYLE_CHOICE, default='friendly', max_length=100)
+    style = models.CharField(choices=STYLE_CHOICES, default='friendly', max_length=100)
 
+    def __str__(self):
+        return (self.language)
     class Meta:
         ordering = ['created']
