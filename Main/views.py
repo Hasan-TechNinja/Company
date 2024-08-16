@@ -1,4 +1,5 @@
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from . models import Snippet
@@ -6,8 +7,8 @@ from . serializers import SnippetSerializer
 
 # Create your views here.
 
-# def Home(request):
-#     return render(request, 'home.html')
+def Home(request):
+    return render(request, 'home.html')
 
 @csrf_exempt
 def snippet_list(request):
