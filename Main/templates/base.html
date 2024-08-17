@@ -20,10 +20,13 @@
         </div>
         <div>
             <ul class='flex space-x-3 md:space-x-6 lg:space-x-32'>
+                {% if user.is_authenticated %}
                 <li class='hover:text-black'><a href="#">Profile</a></li>
-                <li class='hover:text-black'><a href="{% url "login" %}">Login</a></li>
                 <li class='hover:text-black'><a href="#">Logout</a></li>
+                {% else %}
+                <li class='hover:text-black'><a href="{% url "login" %}">Login</a></li>
                 <li class='hover:text-black'><a href="{% url "registration" %}">Registration</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

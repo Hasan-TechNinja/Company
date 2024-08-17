@@ -17,11 +17,11 @@
                 <div>
                     {{ form }}
                     {% if form.errors %}
-                    <p class='text-red-600'>{{ form.errors | striptags }}</p>
+                    <p class='text-red-600'>{{ form.errors|striptags }}</p>
                     {% endif %}
                 </div>
                 {% endfor %}
-                <input class='bg-blue-600 hover:text-white' type="submit", value="Submit">
+                <input class='bg-blue-600 hover:text-black hover:cursor-pointer mt-4 p-2 rounded-md text-white ' type="submit", value="Submit">
             </form>
         </div>
     </div>

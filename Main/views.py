@@ -28,7 +28,7 @@ def Registration(request):
 
 def LoginView(request):
     if request.method == "POST":
-        form = AuthenticationForm(request.POST)
+        form = AuthenticationForm(request, data = request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -37,6 +37,7 @@ def LoginView(request):
                 login(request, user)
                 # next_url = request.POST.get('next', '')
                 # return redirect(next_url)
+                return redirect('home')
     else:
         form = AuthenticationForm()
 
