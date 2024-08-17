@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div class='flex justify-center'>
+    <div class='bg-green-300 mt-8 p-6 rounded-md'>
+        <div class='flex justify-center text-2xl font-semibold'>
+            <h1>Login</h1>
+        </div>
+        <hr class='my-2'>
+        <div>
+            <form action="" method = 'POST'>
+                {% csrf_token %}
+                {% for form in form %}
+                <div>
+                    {{ form.label_tag }}
+                </div>
+                <div>
+                    {{ form }}
+                    {% if form.errors %}
+                    <p class='text-red-600'>{{ form.errors | striptags }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <input class='bg-blue-600 hover:text-white' type="submit", value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

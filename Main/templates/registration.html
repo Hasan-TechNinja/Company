@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Registration{% endblock title %}
+{% block content %}
+<div class='flex justify-center space-x-5'>
+   <div class='bg-green-300 m-5 p-6 rounded-md'>
+        <div>
+            <h2 class='bg-green-300 text-4xl font-normal text-center'>Registration</h2>
+        </div>
+        <hr class='my-2'>
+        <form action="" method = 'POST'>
+            {% csrf_token %}
+            <div>
+                {% for form in form %}
+                    <div>
+                        {{form.label_tag}}
+                    </div>
+                    <div class='text-black'>
+                        {{form}}
+                        {% if form.errors %}
+                            <p class='text-red-600'>{{ form.errors | striptags }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            <div class='text-center mt-3'>
+                <input class='bg-blue-500 hover:bg-blue-700 hover:text-blue-200 p-2 rounded-md text-center hover:cursor-pointer' type="submit" value='Submit'>
+            </div>
+        </form>
+   </div>
+</div>
+{% endblock content %}

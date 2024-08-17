@@ -1,14 +1,51 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from . models import Snippet
 from . serializers import SnippetSerializer
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
 def Home(request):
     return render(request, 'home.html')
+
+def Registration(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    context = {
+        'form':form
+    }
+    return render(request, 'registration.html', context)
+
+def LoginView(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username = username, password = password)
+            if user is not None:
+                login(request, user)
+                # next_url = request.POST.get('next', '')
+                # return redirect(next_url)
+    else:
+        form = AuthenticationForm()
+
+    context = {
+        'form':form,
+        # 'next':next_url
+    }
+    return render(request, 'login.html', context)
+
 
 @csrf_exempt
 def snippet_list(request):
