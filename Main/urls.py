@@ -9,6 +9,7 @@ urlpatterns = [
     path('snippets/<int:pk>/', views.snippet_detail),
     path('registration/', views.Registration, name='registration'),
     path('login/', views.LoginView, name='login'),
-    # path('account/login/', views.LoginView, name='login'),
+    path('accounts/login/', views.LoginView, name='login'),
     path('logout/', views.LogoutView, name='logout'),
+    path('company/', views.Company, name='company'),
 ]

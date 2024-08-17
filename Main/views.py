@@ -6,6 +6,7 @@ from . models import Snippet
 from . serializers import SnippetSerializer
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
 
@@ -92,3 +93,7 @@ def snippet_detail(request, pk):
     elif request.method == 'DELETE':
         snippet.delete()
         return HttpResponse(status=204)
+    
+@login_required
+def Company(request):
+    return render(request, 'company.html')

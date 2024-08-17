@@ -9,12 +9,12 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body class='bg-blue-100'>
-    <div class='flex justify-around bg-red-400 py-3 text-white sm:w-full'>
+    <div class='flex justify-around bg-blue-500 py-3 text-white sm:w-full'>
         <div class=''>
             <ul class='flex space-x-3 md:space-x-6 lg:space-x-32'>
-                <li class='hover:text-black'><a href="#">Home</a></li>
+                <li class='hover:text-black'><a href="{% url "home" %}">Home</a></li>
                 <li class='hover:text-black'><a href="#">About</a></li>
-                <li class='hover:text-black'><a href="#">Company</a></li>
+                <li class='hover:text-black'><a href="{% url "company" %}">Company</a></li>
                 <li class='hover:text-black'><a href="#">Contact</a></li>
             </ul>
         </div>
