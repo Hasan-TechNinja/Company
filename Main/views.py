@@ -48,6 +48,10 @@ def LoginView(request):
     return render(request, 'login.html', context)
 
 
+def LogoutView(request):
+    logout(request)
+    return redirect('login')
+
 @csrf_exempt
 def snippet_list(request):
     if request.method == 'GET':
@@ -55,7 +59,7 @@ def snippet_list(request):
         serializer = SnippetSerializer(snippets, many = True)
         return JsonResponse(serializer.data, safe=False)
 
-    elif request.method == 'POST': 
+    elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = SnippetSerializer(data = data)
         if serializer.is_valid():
